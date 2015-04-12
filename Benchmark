@@ -7,39 +7,52 @@
 root=Test
 testIO="$root"/Test-IO
 
-
+# Get Start Time in nanoseconds
 function start_time {
     start=$(date +%s%N)
-    echo "Start (ns)  "$start
+    echo "Start (ns)  $start"
 }
 
+# Get Stop Time in nanoseconds
 function end_time {
     stop=$(date +%s%N)
-    echo "Stop  (ns)  "$stop
+    echo "Stop  (ns)  $stop"
 }
 
+# Calculate Time spent in nanoseconds and milliseconds
 function calc_time {
     end_time
     time_spent=$(echo "${stop}-${start}" | bc -l)
-    time_spend_ms=$(echo "scale=3; ${time_spent}/1000000" | bc -l)
-    echo "Total (ms)  "$time_spend_ms
+    time_spent_ms=$(echo "scale=3; ${time_spent}/1000000" | bc -l)
+    echo "Total (ms)  $time_spent_ms"
 }
 
+# Pass arguments to calculate time spend in milliseconds
+function time_spent {
+    echo
+    echo "${1}"
+    start_time
+    ${2} &>/dev/null
+    calc_time
+}
+
+function calc_mem {
+    file=temp
+    echo
+    echo "Calculating memory for ${1}"
+    valgrind ${2} &> ${file}
+    tail -15 ${file}
+    rm ${file}
+}
+
+# Prepare for IO test
 function prepareDumpFile {
     cd "$testIO/DumpFile"
-    echo "Location:" $(pwd)
- 
-    echo
-    echo "Compiling DumpFile"
-    start_time
-    javac Lorem.java
-    calc_time
-    
-    echo
-    echo "Starting Lorem"
-    start_time
-    java Lorem &>/dev/null
-    calc_time
+    echo "Location: $(pwd)"
+
+    time_spent  "Compiling DumpFile" "javac Lorem.java"
+    time_spent  "Starting Lorem Processing" "java Lorem"
+    calc_mem    "Lorem" "java Lorem"
 }
 
 prepareDumpFile
