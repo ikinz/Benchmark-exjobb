@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+# Script for running all the benchmark files.
+#   It will run each benchmark 3 times.
+#   Each run will output into a result file and in the end presented.
+
+root=Test
+testIO="$root"/Test-IO
+
+
+function start_time {
+    start=$(date +%s%N)
+    echo "Start (ns)  "$start
+}
+
+function end_time {
+    stop=$(date +%s%N)
+    echo "Stop  (ns)  "$stop
+}
+
+function calc_time {
+    end_time
+    time_spent=$(echo "${stop}-${start}" | bc -l)
+    time_spend_ms=$(echo "scale=3; ${time_spent}/1000000" | bc -l)
+    echo "Total (ms)  "$time_spend_ms
+}
+
+function prepareDumpFile {
+    cd "$testIO/DumpFile"
+    echo "Location:" $(pwd)
+ 
+    echo
+    echo "Compiling DumpFile"
+    start_time
+    javac Lorem.java
+    calc_time
+    
+    echo
+    echo "Starting Lorem"
+    start_time
+    java Lorem &>/dev/null
+    calc_time
+}
+
+prepareDumpFile
