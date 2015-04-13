@@ -31,10 +31,10 @@ namespace TestIO
 				System.IO.File.Delete (output);
 			}
 
-			StreamReader sr = new StreamReader (file);
-			StreamWriter sw = new StreamWriter (output);
-
 			try {
+				StreamReader sr = new StreamReader (file);
+				StreamWriter sw = new StreamWriter (output);
+
 				String line;
 				while ((line = sr.ReadLine()) != null) {
 					line = line.Replace("Tellus", "Terra");
