@@ -31,7 +31,7 @@ def main(argv):
 
     #ns = time.time()
     wrapped = wrapper(start, file, output)
-    print (timeit.timeit(wrapped, number=1))
+    print (timeit.timeit(wrapped, number=1)*1000)
     #totaltime = (time.time() - ns) / 1000000
     #print (totaltime)
     sys.exit(0)
