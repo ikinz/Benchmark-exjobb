@@ -4,8 +4,15 @@
 #   It will run each benchmark 3 times.
 #   Each run will output into a result file and in the end presented.
 
-root=Test
-testIO="$root"/Test-IO
+# Get root directory for all tests
+root="$(pwd)/Test"
+
+# Get root directory for Test #1
+testIO="${root}/Test-IO"
+
+# Get root directory for Test #2
+testGL="${root}/Test-GrafList"
+
 
 # Get Start Time in nanoseconds
 function start_time {
@@ -47,7 +54,7 @@ function calc_mem {
 
 # Prepare for IO test
 function prepareDumpFile {
-    cd "$testIO/DumpFile"
+    cd "${testIO}/DumpFile"
     echo "Location: $(pwd)"
 
     time_spent  "Compiling DumpFile" "javac Lorem.java"
@@ -55,4 +62,14 @@ function prepareDumpFile {
     calc_mem    "Lorem" "java Lorem"
 }
 
+# Prepare for Test-GrafList
+function prepareGrafList {
+    cd "${testGL}/DumpFile"
+    echo "Location: $(pwd)"
+    echo "Generating DumpFile"
+
+    head -n 5000 "${testIO}/DumpFile/dump.txt" > dump.txt
+}
+
 prepareDumpFile
+prepareGrafList
