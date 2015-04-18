@@ -1,0 +1,5 @@
+/home/ikinz/projects/cs-mono/TestMandelbrot/TestMandelbrot/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ikinz/projects/cs-mono/TestMandelbrot/TestMandelbrot/bin/Debug/TestMandelbrot.exe.mdb
+/home/ikinz/projects/cs-mono/TestMandelbrot/TestMandelbrot/bin/Debug/TestMandelbrot.exe
+/home/ikinz/projects/cs-mono/TestMandelbrot/TestMandelbrot/obj/x86/Debug/TestMandelbrot.exe
+/home/ikinz/projects/cs-mono/TestMandelbrot/TestMandelbrot/obj/x86/Debug/TestMandelbrot.exe.mdb
