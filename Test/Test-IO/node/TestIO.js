@@ -2,6 +2,9 @@ var LineByLineReader  = require("line-by-line"),
     fs                = require("fs"),
     lr                = new LineByLineReader(process.argv[2]);
 
+fs.unlink('res.txt', function (err) {
+});
+
 lr.on('error', function (err) {
   console.log("Error " + err);
 });
