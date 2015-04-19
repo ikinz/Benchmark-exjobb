@@ -20,6 +20,7 @@ function clear_results {
     echo "Cleaning results"
     find -name results -print -delete
     find -name res.txt -print -delete
+    find -name Test-IO.txt -print -delete
 }
 
 # Get Start Time in nanoseconds
