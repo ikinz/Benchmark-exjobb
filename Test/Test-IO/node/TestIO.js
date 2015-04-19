@@ -1,22 +1,20 @@
-var fs = require('fs');
-var LineStream = require('byline').LineStream;
-var Transform = require('stream').Transform;
-var inputFilename = process.argv[2];
-var outputFilename = 'res.txt';
-if (!inputFilename || !outputFilename) process.exit(1);
-var input = fs.createReadStream(inputFilename);
-var output = fs.createWriteStream(outputFilename);
-var lineStream = new LineStream();
+var LineByLineReader  = require("line-by-line"),
+    fs                = require("fs"),
+    lr                = new LineByLineReader(process.argv[2]);
 
-require('util').inherits(Transformer, Transform);
-function Transformer() {
-    if (!(this instanceof Transformer)) return new Transformer();
-    Transform.call(this);
-}
+fs.unlink('res.txt', function (err) {
+});
 
-Transformer.prototype._transform = function(line, enc, callback) {
-    line = line.toString().replace("Tellus", "Terra").replace("tellus", "terra") + '\n';
-    return callback(null, line);
-};
+lr.on('error', function (err) {
+  console.log("Error " + err);
+});
 
-input.pipe(lineStream).pipe(new Transformer()).pipe(output);
+lr.on('line', function (line) {
+  line = line.replace("Tellus", "Terra");
+  line = line.replace("tellus", "terra");
+  fs.appendFileSync("res.txt", line.toString() + "\n");
+});
+
+lr.on('end', function () {
+
+});
