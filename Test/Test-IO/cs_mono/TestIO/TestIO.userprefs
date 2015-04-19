@@ -1,8 +1,8 @@
-﻿<Properties>
+﻿<Properties StartupItem="TestIO/TestIO.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="TestIO/Program.cs">
     <Files>
-      <File FileName="TestIO/Program.cs" Line="13" Column="43" />
+      <File FileName="TestIO/Program.cs" Line="25" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
