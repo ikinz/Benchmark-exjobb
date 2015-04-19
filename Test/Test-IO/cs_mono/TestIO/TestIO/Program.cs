@@ -31,6 +31,17 @@ namespace TestIO
 				System.IO.File.Delete (output);
 			}
 
+			/*string txt = File.ReadAllText (file);
+			string[] arr = txt.Split ('\n');
+
+			for (int i = 0; i < arr.Length; i++) {
+				arr [i] = arr [i].Replace ("Tellus", "Terra");
+				arr [i] = arr [i].Replace ("tellus", "terra");
+			}
+
+			File.WriteAllText(output, String.Join ("\n", arr));
+			*/
+
 			StreamReader sr = new StreamReader (file);
 			StreamWriter sw = new StreamWriter (output);
 
@@ -42,6 +53,16 @@ namespace TestIO
 
 					sw.WriteLine(line);
 				}
+
+				/*
+				string txt = sr.ReadToEnd();
+				string[] arr = txt.Split('\n');
+				for (int i = 0; i < arr.Length; i++) {
+					arr[i] = arr[i].Replace("Tellus", "Terra");
+					arr[i] = arr[i].Replace("tellus", "terra");
+				}
+				File.WriteAllText(output, string.Join("\n", arr));
+				*/
 			} catch (Exception e) {
 
 			} finally {
