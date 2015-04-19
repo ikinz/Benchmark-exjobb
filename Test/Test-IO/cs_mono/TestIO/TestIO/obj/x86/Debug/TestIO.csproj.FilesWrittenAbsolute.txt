@@ -4,3 +4,8 @@
 /home/pierre/projects/exjobb/Benchmark-exjobb/Test/Test-IO/cs_mono/TestIO/TestIO/bin/Debug/TestIO.exe
 /home/pierre/projects/exjobb/Benchmark-exjobb/Test/Test-IO/cs_mono/TestIO/TestIO/obj/x86/Debug/TestIO.exe
 /home/pierre/projects/exjobb/Benchmark-exjobb/Test/Test-IO/cs_mono/TestIO/TestIO/obj/x86/Debug/TestIO.exe.mdb
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-IO/cs_mono/TestIO/TestIO/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-IO/cs_mono/TestIO/TestIO/bin/Debug/TestIO.exe.mdb
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-IO/cs_mono/TestIO/TestIO/bin/Debug/TestIO.exe
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-IO/cs_mono/TestIO/TestIO/obj/x86/Debug/TestIO.exe
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-IO/cs_mono/TestIO/TestIO/obj/x86/Debug/TestIO.exe.mdb

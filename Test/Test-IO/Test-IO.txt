@@ -93,3 +93,51 @@ Java   1894.419 ms
 C#     1960.726 ms 
 IO     14584.954 ms 
 Node   22939.470 ms 
+
+sön apr 19 13:44:27 CEST 2015
+TestIO avg results with 2 runs.
+Python 417.510 ms 
+Java   2630.293 ms 
+IO     20861.762 ms 
+C#     23131.184 ms 
+Node   23414.157 ms 
+
+sön apr 19 13:46:29 CEST 2015
+TestIO avg results with 2 runs.
+Java   1299.546 ms 
+Python 4989.052 ms 
+C#     8068.220 ms 
+IO     20574.662 ms 
+Node   20951.600 ms 
+
+sön apr 19 13:58:08 CEST 2015
+TestIO avg results with 5 runs.
+Java   590.139 ms 
+Python 6391.886 ms 
+C#     7698.014 ms 
+IO     20576.484 ms 
+Node   20760.837 ms 
+
+sön apr 19 14:11:03 CEST 2015
+TestIO avg results with 5 runs.
+Java   651.928 ms 
+Python 2987.305 ms 
+IO     20438.995 ms 
+Node   20795.425 ms 
+C#     22094.640 ms 
+
+sön apr 19 14:16:35 CEST 2015
+TestIO avg results with 5 runs.
+Java   60.639 ms 
+Python 1825.854 ms 
+C#     2264.540 ms 
+IO     20376.631 ms 
+Node   20569.836 ms 
+
+sön apr 19 14:31:28 CEST 2015
+TestIO avg results with 5 runs.
+Python 1827.913 ms 
+C#     2271.404 ms 
+Java   2499.137 ms 
+IO     20644.428 ms 
+Node   20874.968 ms 
