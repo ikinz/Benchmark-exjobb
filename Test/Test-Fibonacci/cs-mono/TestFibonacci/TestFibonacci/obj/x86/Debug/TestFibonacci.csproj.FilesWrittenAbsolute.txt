@@ -1,0 +1,5 @@
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-Fibonacci/cs-mono/TestFibonacci/TestFibonacci/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-Fibonacci/cs-mono/TestFibonacci/TestFibonacci/bin/Debug/TestFibonacci.exe.mdb
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-Fibonacci/cs-mono/TestFibonacci/TestFibonacci/bin/Debug/TestFibonacci.exe
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-Fibonacci/cs-mono/TestFibonacci/TestFibonacci/obj/x86/Debug/TestFibonacci.exe
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-Fibonacci/cs-mono/TestFibonacci/TestFibonacci/obj/x86/Debug/TestFibonacci.exe.mdb
