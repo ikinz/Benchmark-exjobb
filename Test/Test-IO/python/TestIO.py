@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import timeit, sys
+import timeit, sys, io
 
 def wrapper(func, *args, **kwargs):
     def wrapped():
@@ -8,8 +8,8 @@ def wrapper(func, *args, **kwargs):
     return wrapped
 
 def start(file, outfile):
-    input = open(file, 'r')
-    output = open(outfile, 'w')
+    #input = open(file, 'r')
+    #output = open(outfile, 'w')
 
     line = input.readline()
     while line:
