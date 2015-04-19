@@ -93,3 +93,11 @@ Java   1894.419 ms
 C#     1960.726 ms 
 IO     14584.954 ms 
 Node   22939.470 ms 
+
+sön apr 19 13:20:59 CEST 2015
+TestIO avg results with 2 runs.
+Node   899.034 ms 
+Python 1134.505 ms 
+Java   1536.733 ms 
+C#     1939.173 ms 
+IO     14581.342 ms 

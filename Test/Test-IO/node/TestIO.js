@@ -1,20 +1,8 @@
-var LineByLineReader  = require("line-by-line"),
-    fs                = require("fs"),
-    lr                = new LineByLineReader(process.argv[2]);
-
-fs.unlink('res.txt', function (err) {
-});
-
-lr.on('error', function (err) {
-  console.log("Error " + err);
-});
-
-lr.on('line', function (line) {
-  line = line.replace("Tellus", "Terra");
-  line = line.replace("tellus", "terra");
-  fs.appendFileSync("res.txt", line.toString() + "\n");
-});
-
-lr.on('end', function () {
-
-});
+var fs = require('fs');
+var content = fs.readFileSync("../DumpFile/dump.txt", 'utf-8');
+content = content.split('\n');
+for (var i = 0; i < content.length; i++) {
+  content[i] = content[i].replace("Tellus", "Terra");
+  content[i] = content[i].replace("tellus", "terra");
+}
+fs.writeFileSync("res.txt", content.join('\n'));
