@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Script for running all the benchmark files.
-#   It will run each benchmark 3 times.
+#   It will run each benchmark 100 times for each implementation.
 #   Each run will output into a result file and in the end presented.
 
 # Get root directory for all tests
@@ -56,11 +56,11 @@ function time_spent {
 }
 
 # Calculate memory usage
-# Params:
+# Params: Work, Command, Language
 function calc_mem {
     file=temp
     echo
-    echo "Calculating memory for ${1}"
+    echo "Calculating memory for ${3}"
     valgrind ${2} &> ${file}
     tail -15 ${file}
     rm ${file}
@@ -85,7 +85,7 @@ function prepareGrafList {
     head -n 5000 "${testIO}/DumpFile/dump.txt" > dump.txt
 }
 
-# Benchmark TestIO
+# Benchmark TestIO Runtime
 # Params: #Runs
 function benchmark-IO {
     # Clean old results
@@ -144,7 +144,19 @@ function benchmark-IO {
     echo -e "\n$(date)" >> Test-IO.txt || echo "$(date)" > Test-IO.txt
     echo "TestIO avg results with ${1} runs." | tee /dev/tty | tee >> Test-IO.txt
     find -name results -execdir awk '{sum+=$4} END {printf "%-6s %.3f %s \n", $1, sum/NR, "ms"}' {} \; | sort -k2 -n | tee /dev/tty | tee >> Test-IO.txt
+}
 
+# Benchmark TestIO Memory
+# Params: Work, Command, Language
+function benchmark-IO-mem {
+    # For C#
+    # cd "${testIO}/cs_mono"
+    # echo "Location: $(pwd)"
+    # calc_mem "Starting Test" "mono ./TestIO/TestIO/bin/Debug/TestIO.exe -f ${testIO}/DumpFile/dump.txt" "C#"
+
+    cd "${testIO}/python"
+    echo "Location: $(pwd)"
+    calc_mem "Starting Test" "python3 TestIO.py -f ../DumpFile/dump.txt"    "Python"
 
 }
 
@@ -158,6 +170,7 @@ if [[ $1 == "-c" ]]; then
     esac
 fi
 
-benchmark-IO "5"
+#benchmark-IO "2"
+benchmark-IO-mem "2"
 #prepareDumpFile
 #prepareGrafList
