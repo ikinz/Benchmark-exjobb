@@ -336,26 +336,26 @@ function benchmark-LZW {
 
 function benchmark-LZW-mem {
   #For C#
-  cd "${testFIB}/cs-mono"
+  cd "${testLZW}/cs-mono"
   echo "Location: $(pwd)"
   calc_mem "LZWComression" "mono ./LZWComression/LZWComression/bin/Debug/LZWComression.exe -f ../DumpFile/dump.txt" "C#" "2"
 
-  cd "${testFIB}/python"
+  cd "${testLZW}/python"
   echo "Location: $(pwd)"
   calc_mem "LZWComression" "python3 Fibonacci.py -f ../DumpFile/dump.txt" "Python" "2"
 
   # For Java
-  cd "${testFIB}/java"
+  cd "${testLZW}/java"
   echo "Location: $(pwd)"
   calc_mem "LZWComression" "java LZW.java ../DumpFile/dump.txt" "Java" "2"
 
   # For Node
-  cd "${testFIB}/node"
+  cd "${testLZW}/node"
   echo "Location: $(pwd)"
   calc_mem "LZWComression" "node lzw.js ../DumpFile/dump.txt" "Node" "2"
 
   # For IO
-  cd "${testFIB}/io"
+  cd "${testLZW}/io"
   echo "Location: $(pwd)"
   calc_mem "LZWComression" "node lzw.js ../DumpFile/dump.txt" "IO" "2"
 }
