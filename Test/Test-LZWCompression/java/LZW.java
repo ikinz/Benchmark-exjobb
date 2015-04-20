@@ -76,7 +76,6 @@ public class LZW {
     	
         List<Integer> compressed = compress(ReadAll.readAllLines(file));
         String decompressed = decompress(compressed);
-        System.out.println(decompressed);
     }	
     
     private static class ReadAll {
