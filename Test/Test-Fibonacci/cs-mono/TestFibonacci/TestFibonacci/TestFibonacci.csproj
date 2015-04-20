@@ -33,4 +33,7 @@
   <ItemGroup>
     <Compile Include="Fibonacci.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
 </Project>

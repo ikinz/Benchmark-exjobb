@@ -8,8 +8,8 @@ namespace TestIO
 	{
 		public static void Main (string[] args)
 		{
-			string file = "dump.txt";
-			string output = "res.txt";
+			String file = "dump.txt";
+			String output = "res.txt";
 			for (int i = 0; i < args.Length; i++) {
 				if (args [i].Equals ("-f")) {
 					file = args [++i];
@@ -18,12 +18,15 @@ namespace TestIO
 				}
 			}
 
+			//Console.WriteLine(GC.GetTotalMemory (true));
+
 			Stopwatch sw = new Stopwatch ();
 			sw.Start();
 			start (file, output);
 			sw.Stop ();
 			TimeSpan et = sw.Elapsed;
 			Console.WriteLine (et.TotalMilliseconds);
+			//Console.WriteLine(GC.GetTotalMemory (true));
 		}
 
 		public static void start(string file, string output) {
@@ -31,8 +34,8 @@ namespace TestIO
 				System.IO.File.Delete (output);
 			}
 
-			string txt = File.ReadAllText (file);
-			string[] arr = txt.Split ('\n');
+			String txt = File.ReadAllText (file);
+			String[] arr = txt.Split ('\n');
 
 			for (int i = 0; i < arr.Length; i++) {
 				arr [i] = arr [i].Replace ("Tellus", "Terra");

@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace TestFibonacci
 {
 	public class Fibonacci
 	{
 		static void Main() {
+			//Console.WriteLine(GC.GetTotalMemory (true));
+			Console.WriteLine(System.Diagnostics.Process.GetCurrentProcess ().WorkingSet64);
 			new Fibonacci ().start();
+			Console.WriteLine(System.Diagnostics.Process.GetCurrentProcess ().WorkingSet64);
+			Console.WriteLine(GC.GetTotalMemory (true));
 		}
 
 		public void start() {
