@@ -1,0 +1,5 @@
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-LZWCompression/cs-mono/LZWComression/LZWComression/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-LZWCompression/cs-mono/LZWComression/LZWComression/bin/Debug/LZWComression.exe.mdb
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-LZWCompression/cs-mono/LZWComression/LZWComression/bin/Debug/LZWComression.exe
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-LZWCompression/cs-mono/LZWComression/LZWComression/obj/x86/Debug/LZWComression.exe
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-LZWCompression/cs-mono/LZWComression/LZWComression/obj/x86/Debug/LZWComression.exe.mdb
