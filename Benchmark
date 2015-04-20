@@ -58,7 +58,7 @@ function calc_time {
 function time_spent {
     echo "${1}"
     start_time
-    ${2} #&>/dev/null
+    ${2} &>/dev/null
     calc_time "${3}"
     echo
 }
@@ -91,6 +91,14 @@ function prepareGrafList {
     echo "Generating DumpFile"
 
     head -n 5000 "${testIO}/DumpFile/dump.txt" > dump.txt
+}
+
+function prepareCompression {
+    cd "${testLZW}/DumpFile"
+    echo "Location: $(pwd)"
+    echo "Generating DumpFile"
+
+    head -n 15000 "${testIO}/DumpFile/dump.txt" > dump.txt
 }
 
 # Benchmark TestIO Runtime
@@ -280,7 +288,7 @@ function benchmark-LZW {
     for (( i=1; i<=$1; i++))
     do
         echo "LZWComression [1/5] Run [${i}/${1}] C#"
-        time_spent "Starting Test" "./TestFibonacci/LZWComression/LZWComression/bin/Debug/LZWComression.exe" "C#"
+        time_spent "Starting Test" "./TestFibonacci/LZWComression/LZWComression/bin/Debug/LZWComression.exe -f ../DumpFile/dump.txt" "C#"
     done
 
     # For Python
@@ -289,7 +297,7 @@ function benchmark-LZW {
     for (( i=1; i<=$1; i++))
     do
         echo "LZWComression [2/5] Run [${i}/${1}] Python"
-        time_spent "Starting Test" "python3 LZWCompression.py"    "Python"
+        time_spent "Starting Test" "python3 LZWCompression.py -f ../DumpFile/dump.txt"    "Python"
     done
 
     # For Java
@@ -299,7 +307,7 @@ function benchmark-LZW {
     for (( i=1; i<=$1; i++))
     do
         echo "LZWComression [3/5] Run [${i}/${1}] Java"
-        time_spent "Starting Test" "java Fibonacci"  "Java"
+        time_spent "Starting Test" "java Fibonacci"  "Java -f ../DumpFile/dump.txt"
     done
 
     # For Node
@@ -307,7 +315,7 @@ function benchmark-LZW {
     echo "Location: $(pwd)"
     for (( i=1; i<=$1; i++))
     do
-        echo "LZWComression [4/5] Run [${i}/${1}] nodejs"
+        echo "LZWComression [4/5] Run [${i}/${1}] nodejs ../DumpFile/dump.txt"
         time_spent "Starting Test" "node lzw.js"   "Node"
     done
 
@@ -316,7 +324,7 @@ function benchmark-LZW {
     echo "Location: $(pwd)"
     for (( i=1; i<=$1; i++))
     do
-        echo "LZWComression [5/5] Run [${i}/${1}] iojs"
+        echo "LZWComression [5/5] Run [${i}/${1}] iojs  ../DumpFile/dump.txt"
         time_spent "Starting Test" "node lzw.js"  "IO"
     done
 
@@ -347,6 +355,7 @@ fi
 #benchmark-fibonacci "2"
 #benchmark-fibonacci-mem "2"
 
+#prepareCompression
 benchmark-LZW "2"
 #benchmark-LZW-mem "2"
 
