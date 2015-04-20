@@ -1,7 +1,7 @@
 var BUFFER_SIZE = 8192;
 
-var size = 600;
-var buf = new Array(BUFFER_SIZE);
+var size = 4000;
+var buf = new Int8Array(BUFFER_SIZE);
 var bufLen = 0;
 var fac;
 var shift;
