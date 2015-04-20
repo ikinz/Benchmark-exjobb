@@ -17,6 +17,9 @@ while i < len(sys.argv):
     if sys.argv[i] == '-o':
         i += 1
         out = open(sys.argv[i], 'a')
+    elif sys.argv[i] == '-n':
+        i += 1
+        out = open(sys.argv[i], 'w')
     elif sys.argv[i] == '-d':
         DEBUG = True
     else:
