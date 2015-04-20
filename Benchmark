@@ -58,7 +58,7 @@ function calc_time {
 function time_spent {
     echo "${1}"
     start_time
-    ${2} &>/dev/null
+    ${2} #&>/dev/null
     calc_time "${3}"
     echo
 }
@@ -69,7 +69,7 @@ function calc_mem {
     for (( i=1; i<=$4; i++))
     do
       echo "${1} Calculating memory alloction RSS for ${3}"
-      python "${launchdir}/memusg" -a memory.txt ${2} &> /dev/null
+      python "${launchdir}/memusg" -a memory.txt ${2} #&> /dev/null
       echo ""
     done
 }
@@ -217,7 +217,7 @@ function benchmark-fibonacci {
     # For Java
     cd "${testFIB}/java"
     echo "Location: $(pwd)"
-    javac TestIO.java &> /dev/null
+    javac Fibonacci.java &> /dev/null
     for (( i=1; i<=$1; i++))
     do
         echo "Fibonacci [3/5] Run [${i}/${1}] Java"
@@ -273,7 +273,6 @@ function benchmark-fibonacci-mem {
     cd "${testFIB}/io"
     echo "Location: $(pwd)"
     calc_mem "Fibonacci" "node Fibonacci.py" "IO" "2"
-
 }
 
 function benchmark-LZW {
@@ -288,7 +287,7 @@ function benchmark-LZW {
     for (( i=1; i<=$1; i++))
     do
         echo "LZWComression [1/5] Run [${i}/${1}] C#"
-        time_spent "Starting Test" "./TestFibonacci/LZWComression/LZWComression/bin/Debug/LZWComression.exe -f ../DumpFile/dump.txt" "C#"
+        time_spent "Starting Test" "./LZWComression/LZWComression/bin/Debug/LZWComression.exe -f ../DumpFile/dump.txt" "C#"
     done
 
     # For Python
@@ -303,11 +302,11 @@ function benchmark-LZW {
     # For Java
     cd "${testLZW}/java"
     echo "Location: $(pwd)"
-    javac TestIO.java &> /dev/null
+    javac LZW.java &> /dev/null
     for (( i=1; i<=$1; i++))
     do
         echo "LZWComression [3/5] Run [${i}/${1}] Java"
-        time_spent "Starting Test" "java Fibonacci"  "Java -f ../DumpFile/dump.txt"
+        time_spent "Starting Test" "java LZW -f ../DumpFile/dump.txt" "Java"
     done
 
     # For Node
@@ -315,8 +314,8 @@ function benchmark-LZW {
     echo "Location: $(pwd)"
     for (( i=1; i<=$1; i++))
     do
-        echo "LZWComression [4/5] Run [${i}/${1}] nodejs ../DumpFile/dump.txt"
-        time_spent "Starting Test" "node lzw.js"   "Node"
+        echo "LZWComression [4/5] Run [${i}/${1}] nodejs"
+        time_spent "Starting Test" "node lzw.js ../DumpFile/dump.txt"   "Node"
     done
 
     # For IO
@@ -324,8 +323,8 @@ function benchmark-LZW {
     echo "Location: $(pwd)"
     for (( i=1; i<=$1; i++))
     do
-        echo "LZWComression [5/5] Run [${i}/${1}] iojs  ../DumpFile/dump.txt"
-        time_spent "Starting Test" "node lzw.js"  "IO"
+        echo "LZWComression [5/5] Run [${i}/${1}] iojs"
+        time_spent "Starting Test" "node lzw.js ../DumpFile/dump.txt"  "IO"
     done
 
     # Get avg
@@ -335,9 +334,31 @@ function benchmark-LZW {
     find -name results -execdir awk '{sum+=$4} END {printf "%-6s %.3f %s \n", $1, sum/NR, "ms"}' {} \; | sort -k2 -n | tee /dev/tty | tee >> Test-LZWCompression.txt
 }
 
-# function benchmark-LZW-mem {
-#
-# }
+function benchmark-LZW-mem {
+  #For C#
+  cd "${testFIB}/cs-mono"
+  echo "Location: $(pwd)"
+  calc_mem "LZWComression" "mono ./LZWComression/LZWComression/bin/Debug/LZWComression.exe -f ../DumpFile/dump.txt" "C#" "2"
+
+  cd "${testFIB}/python"
+  echo "Location: $(pwd)"
+  calc_mem "LZWComression" "python3 Fibonacci.py -f ../DumpFile/dump.txt" "Python" "2"
+
+  # For Java
+  cd "${testFIB}/java"
+  echo "Location: $(pwd)"
+  calc_mem "LZWComression" "java LZW.java ../DumpFile/dump.txt" "Java" "2"
+
+  # For Node
+  cd "${testFIB}/node"
+  echo "Location: $(pwd)"
+  calc_mem "LZWComression" "node lzw.js ../DumpFile/dump.txt" "Node" "2"
+
+  # For IO
+  cd "${testFIB}/io"
+  echo "Location: $(pwd)"
+  calc_mem "LZWComression" "node lzw.js ../DumpFile/dump.txt" "IO" "2"
+}
 
 # Check for clear command
 if [[ $1 == "-c" ]]; then
@@ -356,8 +377,8 @@ fi
 #benchmark-fibonacci-mem "2"
 
 #prepareCompression
-benchmark-LZW "2"
-#benchmark-LZW-mem "2"
+#benchmark-LZW "2"
+benchmark-LZW-mem "2"
 
 
 
