@@ -168,26 +168,26 @@ function benchmark-IO-mem {
     #For C#
     cd "${testIO}/cs_mono"
     echo "Location: $(pwd)"
-    calc_mem "Test-IO" "mono ./TestIO/TestIO/bin/Debug/TestIO.exe -f ${testIO}/DumpFile/dump.txt" "C#" "5"
+    calc_mem "Test-IO" "mono ./TestIO/TestIO/bin/Debug/TestIO.exe -f ${testIO}/DumpFile/dump.txt" "C#" "2"
 
     cd "${testIO}/python"
     echo "Location: $(pwd)"
-    calc_mem "Test-IO" "python3 TestIO.py -f ../DumpFile/dump.txt" "Python" "5"
+    calc_mem "Test-IO" "python3 TestIO.py -f ../DumpFile/dump.txt" "Python" "2"
 
     # For Java
     cd "${testIO}/java"
     echo "Location: $(pwd)"
-    calc_mem "Test-IO" "java TestIO.java -f ../DumpFile/dump.txt" "Java" "5"
+    calc_mem "Test-IO" "java TestIO -f ../DumpFile/dump.txt" "Java" "2"
 
     # For Node
     cd "${testIO}/node"
     echo "Location: $(pwd)"
-    calc_mem "Test-IO" "Node TestIO.py -f ../DumpFile/dump.txt" "Node" "5"
+    calc_mem "Test-IO" "node TestIO.js -f ../DumpFile/dump.txt" "Node" "2"
 
     # For IO
     cd "${testIO}/io"
     echo "Location: $(pwd)"
-    calc_mem "Test-IO" "IO TestIO.py -f ../DumpFile/dump.txt" "IO" "5"
+    calc_mem "Test-IO" "node TestIO.js -f ../DumpFile/dump.txt" "IO" "2"
 }
 
 function benchmark-fibonacci {
@@ -262,17 +262,17 @@ function benchmark-fibonacci-mem {
     # For Java
     cd "${testFIB}/java"
     echo "Location: $(pwd)"
-    calc_mem "Fibonacci" "java Fibonacci.java" "Java" "2"
+    calc_mem "Fibonacci" "java Fibonacci" "Java" "2"
 
     # For Node
     cd "${testFIB}/node"
     echo "Location: $(pwd)"
-    calc_mem "Fibonacci" "node Fibonacci.py" "Node" "2"
+    calc_mem "Fibonacci" "node Fibonacci.js" "Node" "2"
 
     # For IO
     cd "${testFIB}/io"
     echo "Location: $(pwd)"
-    calc_mem "Fibonacci" "node Fibonacci.py" "IO" "2"
+    calc_mem "Fibonacci" "node Fibonacci.js" "IO" "2"
 }
 
 function benchmark-LZW {
@@ -342,12 +342,12 @@ function benchmark-LZW-mem {
 
   cd "${testLZW}/python"
   echo "Location: $(pwd)"
-  calc_mem "LZWComression" "python3 Fibonacci.py -f ../DumpFile/dump.txt" "Python" "2"
+  calc_mem "LZWComression" "python3 LZWCompression.py -f ../DumpFile/dump.txt" "Python" "2"
 
   # For Java
   cd "${testLZW}/java"
   echo "Location: $(pwd)"
-  calc_mem "LZWComression" "java LZW.java ../DumpFile/dump.txt" "Java" "2"
+  calc_mem "LZWComression" "java LZW -f ../DumpFile/dump.txt" "Java" "2"
 
   # For Node
   cd "${testLZW}/node"
@@ -370,17 +370,18 @@ if [[ $1 == "-c" ]]; then
     esac
 fi
 
-#benchmark-IO "2"
-#benchmark-IO-mem "2"
-
-#benchmark-fibonacci "2"
-#benchmark-fibonacci-mem "2"
-
-#prepareCompression
-#benchmark-LZW "2"
-benchmark-LZW-mem "2"
-
-
-
+## Preperations ##
 #prepareDumpFile
-#prepareGrafList
+#prepareCompression
+
+## Runtime Benchmarks ##
+#benchmark-IO "10"
+#benchmark-fibonacci "10"
+#benchmark-LZW "10"
+#prepareGrafList "10"
+
+## Memory Benchmarks ##
+#benchmark-IO-mem "2"
+#benchmark-fibonacci-mem "2"
+#benchmark-LZW-mem "2"
+#prepareGrafList-mem "2"

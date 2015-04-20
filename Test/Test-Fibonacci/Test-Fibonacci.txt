@@ -1,0 +1,5 @@
+
+mån apr 20 15:22:17 CEST 2015
+Test-Fibonacci avg results with 10 runs.
+Node   1797.095 ms 
+IO     1801.859 ms 
