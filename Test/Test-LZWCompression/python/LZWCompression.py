@@ -69,7 +69,6 @@ def main(argv):
     str = input.read()
     compressed = compress(str)
     decompressed = decompress(compressed)
-    print(decompressed)
 
 if __name__ == '__main__':main(sys.argv[1:])
 
