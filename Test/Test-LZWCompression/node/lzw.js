@@ -1,5 +1,5 @@
 var fs = require('fs');
-var content = fs.readFileSync("../../Test-IO/DumpFile/dump.txt", 'utf-8');
+var content = fs.readFileSync(process.argv[2], 'utf-8');
 
 //LZW Compression/Decompression for Strings
 var LZW = {
