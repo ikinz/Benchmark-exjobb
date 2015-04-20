@@ -4,14 +4,22 @@
 #   It will run each benchmark 100 times for each implementation.
 #   Each run will output into a result file and in the end presented.
 
+launchdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
 # Get root directory for all tests
 root="$(pwd)/Test"
 
-# Get root directory for Test #1
+# Get root directory for Test IO
 testIO="${root}/Test-IO"
 
-# Get root directory for Test #2
+# Get root directory for Test Graflist
 testGL="${root}/Test-GrafList"
+
+# Get root directory for Test Fib
+testFIB="${root}/Test-Fibonacci"
+
+# Get root directory for Test LZW
+testLZW="${root}/Test-LZWCompression"
 
 # Clear all benchmark results
 function clear_results {
@@ -20,6 +28,8 @@ function clear_results {
     echo "Cleaning results"
     find -name results -print -delete
     find -name res.txt -print -delete
+    find -name memory.txt -print -delete
+    #find -name __pycache__ -print -delete
 }
 
 # Get Start Time in nanoseconds
@@ -46,7 +56,6 @@ function calc_time {
 # Pass arguments to calculate time spend in milliseconds
 # Params: Work, Command, Language
 function time_spent {
-
     echo "${1}"
     start_time
     ${2} #&>/dev/null
@@ -55,14 +64,14 @@ function time_spent {
 }
 
 # Calculate memory usage
-# Params: Work, Command, Language
+# Params: Test Command, Language, Loops
 function calc_mem {
-    file=temp
-    echo
-    echo "Calculating memory for ${3}"
-    valgrind ${2} &> ${file}
-    tail -15 ${file}
-    rm ${file}
+    for (( i=1; i<=$4; i++))
+    do
+      echo "${1} Calculating memory alloction RSS for ${3}"
+      python "${launchdir}/memusg" -a memory.txt ${2} &> /dev/null
+      echo ""
+    done
 }
 
 # Prepare for IO test
@@ -148,16 +157,179 @@ function benchmark-IO {
 # Benchmark TestIO Memory
 # Params: Work, Command, Language
 function benchmark-IO-mem {
-    # For C#
-    # cd "${testIO}/cs_mono"
-    # echo "Location: $(pwd)"
-    # calc_mem "Starting Test" "mono ./TestIO/TestIO/bin/Debug/TestIO.exe -f ${testIO}/DumpFile/dump.txt" "C#"
+    #For C#
+    cd "${testIO}/cs_mono"
+    echo "Location: $(pwd)"
+    calc_mem "Test-IO" "mono ./TestIO/TestIO/bin/Debug/TestIO.exe -f ${testIO}/DumpFile/dump.txt" "C#" "5"
 
     cd "${testIO}/python"
     echo "Location: $(pwd)"
-    calc_mem "Starting Test" "python3 TestIO.py -f ../DumpFile/dump.txt"    "Python"
+    calc_mem "Test-IO" "python3 TestIO.py -f ../DumpFile/dump.txt" "Python" "5"
+
+    # For Java
+    cd "${testIO}/java"
+    echo "Location: $(pwd)"
+    calc_mem "Test-IO" "java TestIO.java -f ../DumpFile/dump.txt" "Java" "5"
+
+    # For Node
+    cd "${testIO}/node"
+    echo "Location: $(pwd)"
+    calc_mem "Test-IO" "Node TestIO.py -f ../DumpFile/dump.txt" "Node" "5"
+
+    # For IO
+    cd "${testIO}/io"
+    echo "Location: $(pwd)"
+    calc_mem "Test-IO" "IO TestIO.py -f ../DumpFile/dump.txt" "IO" "5"
+}
+
+function benchmark-fibonacci {
+    # Clean old results
+    cd "${testFIB}"
+    clear_results
+    clear
+
+    # For C#
+    cd "${testFIB}/cs-mono"
+    echo "Location: $(pwd)"
+    for (( i=1; i<=$1; i++))
+    do
+        echo "Fibonacci [1/5] Run [${i}/${1}] C#"
+        time_spent "Starting Test" "./TestFibonacci/TestFibonacci/bin/Debug/TestFibonacci.exe" "C#"
+    done
+
+    # For Python
+    cd "${testFIB}/python"
+    echo "Location: $(pwd)"
+    for (( i=1; i<=$1; i++))
+    do
+        echo "Fibonacci [2/5] Run [${i}/${1}] Python"
+        time_spent "Starting Test" "python3 Fibonacci.py"    "Python"
+    done
+
+    # For Java
+    cd "${testFIB}/java"
+    echo "Location: $(pwd)"
+    javac TestIO.java &> /dev/null
+    for (( i=1; i<=$1; i++))
+    do
+        echo "Fibonacci [3/5] Run [${i}/${1}] Java"
+        time_spent "Starting Test" "java Fibonacci"  "Java"
+    done
+
+    # For Node
+    cd "${testFIB}/node"
+    echo "Location: $(pwd)"
+    for (( i=1; i<=$1; i++))
+    do
+        echo "Fibonacci [4/5] Run [${i}/${1}] nodejs"
+        time_spent "Starting Test" "node Fibonacci.js"   "Node"
+    done
+
+    # For IO
+    cd "${testFIB}/io"
+    echo "Location: $(pwd)"
+    for (( i=1; i<=$1; i++))
+    do
+        echo "Fibonacci [5/5] Run [${i}/${1}] iojs"
+        time_spent "Starting Test" "node Fibonacci.js"  "IO"
+    done
+
+    # Get avg
+    cd "${testFIB}"
+    echo -e "\n$(date)" >> Test-Fibonacci.txt || echo "$(date)" > Test-Fibonacci.txt
+    echo "Test-Fibonacci avg results with ${1} runs." | tee /dev/tty | tee >> Test-Fibonacci.txt
+    find -name results -execdir awk '{sum+=$4} END {printf "%-6s %.3f %s \n", $1, sum/NR, "ms"}' {} \; | sort -k2 -n | tee /dev/tty | tee >> Test-Fibonacci.txt
+}
+
+function benchmark-fibonacci-mem {
+    #For C#
+    cd "${testFIB}/cs-mono"
+    echo "Location: $(pwd)"
+    calc_mem "Fibonacci" "mono ./TestFibonacci/TestFibonacci/bin/Debug/TestFibonacci.exe" "C#" "2"
+
+    cd "${testFIB}/python"
+    echo "Location: $(pwd)"
+    calc_mem "Fibonacci" "python3 Fibonacci.py" "Python" "2"
+
+    # For Java
+    cd "${testFIB}/java"
+    echo "Location: $(pwd)"
+    calc_mem "Fibonacci" "java Fibonacci.java" "Java" "2"
+
+    # For Node
+    cd "${testFIB}/node"
+    echo "Location: $(pwd)"
+    calc_mem "Fibonacci" "node Fibonacci.py" "Node" "2"
+
+    # For IO
+    cd "${testFIB}/io"
+    echo "Location: $(pwd)"
+    calc_mem "Fibonacci" "node Fibonacci.py" "IO" "2"
 
 }
+
+function benchmark-LZW {
+    # Clean old results
+    cd "${testLZW}"
+    clear_results
+    clear
+
+    # For C#
+    cd "${testLZW}/cs-mono"
+    echo "Location: $(pwd)"
+    for (( i=1; i<=$1; i++))
+    do
+        echo "LZWComression [1/5] Run [${i}/${1}] C#"
+        time_spent "Starting Test" "./TestFibonacci/LZWComression/LZWComression/bin/Debug/LZWComression.exe" "C#"
+    done
+
+    # For Python
+    cd "${testLZW}/python"
+    echo "Location: $(pwd)"
+    for (( i=1; i<=$1; i++))
+    do
+        echo "LZWComression [2/5] Run [${i}/${1}] Python"
+        time_spent "Starting Test" "python3 LZWCompression.py"    "Python"
+    done
+
+    # For Java
+    cd "${testLZW}/java"
+    echo "Location: $(pwd)"
+    javac TestIO.java &> /dev/null
+    for (( i=1; i<=$1; i++))
+    do
+        echo "LZWComression [3/5] Run [${i}/${1}] Java"
+        time_spent "Starting Test" "java Fibonacci"  "Java"
+    done
+
+    # For Node
+    cd "${testLZW}/node"
+    echo "Location: $(pwd)"
+    for (( i=1; i<=$1; i++))
+    do
+        echo "LZWComression [4/5] Run [${i}/${1}] nodejs"
+        time_spent "Starting Test" "node lzw.js"   "Node"
+    done
+
+    # For IO
+    cd "${testLZW}/io"
+    echo "Location: $(pwd)"
+    for (( i=1; i<=$1; i++))
+    do
+        echo "LZWComression [5/5] Run [${i}/${1}] iojs"
+        time_spent "Starting Test" "node lzw.js"  "IO"
+    done
+
+    # Get avg
+    cd "${testLZW}"
+    echo -e "\n$(date)" >> Test-LZWCompression.txt || echo "$(date)" > Test-LZWCompression.txt
+    echo "Test LZWComression avg results with ${1} runs." | tee /dev/tty | tee >> Test-LZWCompression.txt
+    find -name results -execdir awk '{sum+=$4} END {printf "%-6s %.3f %s \n", $1, sum/NR, "ms"}' {} \; | sort -k2 -n | tee /dev/tty | tee >> Test-LZWCompression.txt
+}
+
+# function benchmark-LZW-mem {
+#
+# }
 
 # Check for clear command
 if [[ $1 == "-c" ]]; then
@@ -170,6 +342,15 @@ if [[ $1 == "-c" ]]; then
 fi
 
 #benchmark-IO "2"
-benchmark-IO-mem "2"
+#benchmark-IO-mem "2"
+
+#benchmark-fibonacci "2"
+#benchmark-fibonacci-mem "2"
+
+benchmark-LZW "2"
+#benchmark-LZW-mem "2"
+
+
+
 #prepareDumpFile
 #prepareGrafList
