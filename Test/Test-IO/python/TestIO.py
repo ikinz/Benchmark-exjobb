@@ -11,12 +11,12 @@ def start(file, outfile):
     input = open(file, 'r')
     output = open(outfile, 'w')
 
-    line = input.readline()
-    while line:
-        line = line.replace('Tellus', 'Terra')
-        line = line.replace('tellus', 'terra')
-        output.write(line)
-        line = input.readline()
+    line = input.read()
+    arr = line.splitlines()
+    for i in range(len(arr)):
+        arr[i] = arr[i].replace('Tellus', 'Terra')
+        arr[i] = arr[i].replace('tellus', 'terra')
+        output.write(arr[i] + "\n")
 
 def main(argv):
     file = 'dump.txt'
