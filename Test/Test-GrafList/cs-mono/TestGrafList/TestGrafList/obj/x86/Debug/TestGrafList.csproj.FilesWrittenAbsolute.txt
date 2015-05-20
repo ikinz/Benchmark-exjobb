@@ -1,0 +1,6 @@
+/home/ikinz/projects/cs-mono/TestGrafList/TestGrafList/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ikinz/projects/cs-mono/TestGrafList/TestGrafList/obj/x86/Debug/TestGrafList.gtk-gui.gui.stetic
+/home/ikinz/projects/cs-mono/TestGrafList/TestGrafList/bin/Debug/TestGrafList.exe.mdb
+/home/ikinz/projects/cs-mono/TestGrafList/TestGrafList/bin/Debug/TestGrafList.exe
+/home/ikinz/projects/cs-mono/TestGrafList/TestGrafList/obj/x86/Debug/TestGrafList.exe
+/home/ikinz/projects/cs-mono/TestGrafList/TestGrafList/obj/x86/Debug/TestGrafList.exe.mdb
