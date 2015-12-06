@@ -1,0 +1,11 @@
+
+fre maj 22 00:15:00 CEST 2015
+Test LZWComression avg results with 100 runs.
+Python 433.838 ms 
+Java   444.749 ms 
+C#     564.472 ms 
+Node   823.651 ms 
+
+fre maj 22 01:51:00 CEST 2015
+Test LZWComression avg results with 100 runs.
+Node   848.947 ms 

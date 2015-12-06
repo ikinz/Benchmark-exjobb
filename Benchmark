@@ -106,16 +106,16 @@ function prepareCompression {
 function benchmark-IO {
     # Clean old results
     cd "${testIO}"
-    clear_results
     clear
 
+: <<'END'
     # For C#
     cd "${testIO}/cs_mono"
     echo "Location: $(pwd)"
     for (( i=1; i<=$1; i++))
     do
         echo "TestIO [1/5] Run [${i}/${1}] C#"
-        time_spent "Starting Test" "./TestIO/TestIO/bin/Debug/TestIO.exe -f ${testIO}/DumpFile/dump.txt " "C#"
+        time_spent "Starting Test" "mono ./TestIO/TestIO/bin/Debug/TestIO.exe -f ${testIO}/DumpFile/dump.txt " "C#"
     done
 
     # For Python
@@ -136,7 +136,7 @@ function benchmark-IO {
         echo "TestIO [3/5] Run [${i}/${1}] Java"
         time_spent "Starting Test" "java TestIO         -f ../DumpFile/dump.txt"  "Java"
     done
-
+END
     # For Node
     cd "${testIO}/node"
     echo "Location: $(pwd)"
@@ -147,13 +147,13 @@ function benchmark-IO {
     done
 
     # For IO
-    cd "${testIO}/io"
-    echo "Location: $(pwd)"
-    for (( i=1; i<=$1; i++))
-    do
-        echo "TestIO [5/5] Run [${i}/${1}] iojs"
-        time_spent "Starting Test" "node TestIO.js          ../DumpFile/dump.txt"  "IO"
-    done
+    #cd "${testIO}/io"
+    #echo "Location: $(pwd)"
+    #for (( i=1; i<=$1; i++))
+    #do
+    #    echo "TestIO [5/5] Run [${i}/${1}] iojs"
+    #    time_spent "Starting Test" "node TestIO.js          ../DumpFile/dump.txt"  "IO"
+    #done
 
     # Get avg
     cd "${testIO}"
@@ -165,6 +165,7 @@ function benchmark-IO {
 # Benchmark TestIO Memory
 # Params: Work, Command, Language
 function benchmark-IO-mem {
+: <<'END'
     #For C#
     cd "${testIO}/cs_mono"
     echo "Location: $(pwd)"
@@ -178,31 +179,31 @@ function benchmark-IO-mem {
     cd "${testIO}/java"
     echo "Location: $(pwd)"
     calc_mem "Test-IO" "java TestIO -f ../DumpFile/dump.txt" "Java" "2"
-
+END
     # For Node
     cd "${testIO}/node"
     echo "Location: $(pwd)"
     calc_mem "Test-IO" "node TestIO.js -f ../DumpFile/dump.txt" "Node" "2"
 
     # For IO
-    cd "${testIO}/io"
-    echo "Location: $(pwd)"
-    calc_mem "Test-IO" "node TestIO.js -f ../DumpFile/dump.txt" "IO" "2"
+    #cd "${testIO}/io"
+    #echo "Location: $(pwd)"
+    #calc_mem "Test-IO" "node TestIO.js -f ../DumpFile/dump.txt" "IO" "2"
 }
 
 function benchmark-fibonacci {
     # Clean old results
     cd "${testFIB}"
-    clear_results
     clear
 
+: <<'END'
     # For C#
     cd "${testFIB}/cs-mono"
     echo "Location: $(pwd)"
     for (( i=1; i<=$1; i++))
     do
         echo "Fibonacci [1/5] Run [${i}/${1}] C#"
-        time_spent "Starting Test" "./TestFibonacci/TestFibonacci/bin/Debug/TestFibonacci.exe" "C#"
+        time_spent "Starting Test" "mono ./TestFibonacci/TestFibonacci/bin/Debug/TestFibonacci.exe" "C#"
     done
 
     # For Python
@@ -223,7 +224,7 @@ function benchmark-fibonacci {
         echo "Fibonacci [3/5] Run [${i}/${1}] Java"
         time_spent "Starting Test" "java Fibonacci"  "Java"
     done
-
+END
     # For Node
     cd "${testFIB}/node"
     echo "Location: $(pwd)"
@@ -234,13 +235,13 @@ function benchmark-fibonacci {
     done
 
     # For IO
-    cd "${testFIB}/io"
-    echo "Location: $(pwd)"
-    for (( i=1; i<=$1; i++))
-    do
-        echo "Fibonacci [5/5] Run [${i}/${1}] iojs"
-        time_spent "Starting Test" "node Fibonacci.js"  "IO"
-    done
+    #cd "${testFIB}/io"
+    #echo "Location: $(pwd)"
+    #for (( i=1; i<=$1; i++))
+    #do
+    #    echo "Fibonacci [5/5] Run [${i}/${1}] iojs"
+    #    time_spent "Starting Test" "node Fibonacci.js"  "IO"
+    #done
 
     # Get avg
     cd "${testFIB}"
@@ -250,6 +251,7 @@ function benchmark-fibonacci {
 }
 
 function benchmark-fibonacci-mem {
+: <<'END'
     #For C#
     cd "${testFIB}/cs-mono"
     echo "Location: $(pwd)"
@@ -263,31 +265,30 @@ function benchmark-fibonacci-mem {
     cd "${testFIB}/java"
     echo "Location: $(pwd)"
     calc_mem "Fibonacci" "java Fibonacci" "Java" "2"
-
+END
     # For Node
     cd "${testFIB}/node"
     echo "Location: $(pwd)"
     calc_mem "Fibonacci" "node Fibonacci.js" "Node" "2"
 
     # For IO
-    cd "${testFIB}/io"
-    echo "Location: $(pwd)"
-    calc_mem "Fibonacci" "node Fibonacci.js" "IO" "2"
+    #cd "${testFIB}/io"
+    #echo "Location: $(pwd)"
+    #calc_mem "Fibonacci" "node Fibonacci.js" "IO" "2"
 }
 
 function benchmark-LZW {
     # Clean old results
     cd "${testLZW}"
-    clear_results
     clear
-
+: <<'END'
     # For C#
     cd "${testLZW}/cs-mono"
     echo "Location: $(pwd)"
     for (( i=1; i<=$1; i++))
     do
         echo "LZWComression [1/5] Run [${i}/${1}] C#"
-        time_spent "Starting Test" "./LZWComression/LZWComression/bin/Debug/LZWComression.exe -f ../DumpFile/dump.txt" "C#"
+        time_spent "Starting Test" "mono ./LZWComression/LZWComression/bin/Debug/LZWComression.exe -f ../DumpFile/dump.txt" "C#"
     done
 
     # For Python
@@ -308,7 +309,7 @@ function benchmark-LZW {
         echo "LZWComression [3/5] Run [${i}/${1}] Java"
         time_spent "Starting Test" "java LZW -f ../DumpFile/dump.txt" "Java"
     done
-
+END
     # For Node
     cd "${testLZW}/node"
     echo "Location: $(pwd)"
@@ -319,13 +320,13 @@ function benchmark-LZW {
     done
 
     # For IO
-    cd "${testLZW}/io"
-    echo "Location: $(pwd)"
-    for (( i=1; i<=$1; i++))
-    do
-        echo "LZWComression [5/5] Run [${i}/${1}] iojs"
-        time_spent "Starting Test" "node lzw.js ../DumpFile/dump.txt"  "IO"
-    done
+    #cd "${testLZW}/io"
+    #echo "Location: $(pwd)"
+    #for (( i=1; i<=$1; i++))
+    #do
+    #    echo "LZWComression [5/5] Run [${i}/${1}] iojs"
+    #    time_spent "Starting Test" "node lzw.js ../DumpFile/dump.txt"  "IO"
+    #done
 
     # Get avg
     cd "${testLZW}"
@@ -336,6 +337,7 @@ function benchmark-LZW {
 
 function benchmark-LZW-mem {
   #For C#
+: <<'END'
   cd "${testLZW}/cs-mono"
   echo "Location: $(pwd)"
   calc_mem "LZWComression" "mono ./LZWComression/LZWComression/bin/Debug/LZWComression.exe -f ../DumpFile/dump.txt" "C#" "2"
@@ -348,6 +350,7 @@ function benchmark-LZW-mem {
   cd "${testLZW}/java"
   echo "Location: $(pwd)"
   calc_mem "LZWComression" "java LZW -f ../DumpFile/dump.txt" "Java" "2"
+END
 
   # For Node
   cd "${testLZW}/node"
@@ -355,9 +358,9 @@ function benchmark-LZW-mem {
   calc_mem "LZWComression" "node lzw.js ../DumpFile/dump.txt" "Node" "2"
 
   # For IO
-  cd "${testLZW}/io"
-  echo "Location: $(pwd)"
-  calc_mem "LZWComression" "node lzw.js ../DumpFile/dump.txt" "IO" "2"
+  #cd "${testLZW}/io"
+  #echo "Location: $(pwd)"
+  #calc_mem "LZWComression" "node lzw.js ../DumpFile/dump.txt" "IO" "2"
 }
 
 # Check for clear command
@@ -371,17 +374,17 @@ if [[ $1 == "-c" ]]; then
 fi
 
 ## Preperations ##
-#prepareDumpFile
-#prepareCompression
+prepareDumpFile
+prepareCompression
 
 ## Runtime Benchmarks ##
-#benchmark-IO "10"
-#benchmark-fibonacci "10"
-#benchmark-LZW "10"
+benchmark-IO "100"
+benchmark-fibonacci "100"
+benchmark-LZW "100"
 #prepareGrafList "10"
 
 ## Memory Benchmarks ##
-#benchmark-IO-mem "2"
-#benchmark-fibonacci-mem "2"
-#benchmark-LZW-mem "2"
-#prepareGrafList-mem "2"
+benchmark-IO-mem "10"
+benchmark-fibonacci-mem "10"
+benchmark-LZW-mem "10"
+#prepareGrafList-mem "10"

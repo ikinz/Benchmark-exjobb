@@ -1,0 +1,13 @@
+
+tor maj 21 22:27:12 CEST 2015
+TestIO avg results with 100 runs.
+Total  0.000 ms 
+Node   1468.932 ms 
+C#     1477.603 ms 
+Java   2716.819 ms 
+Python 2979.377 ms 
+
+fre maj 22 01:45:59 CEST 2015
+TestIO avg results with 100 runs.
+Total  0.000 ms 
+Node   1162.239 ms 
