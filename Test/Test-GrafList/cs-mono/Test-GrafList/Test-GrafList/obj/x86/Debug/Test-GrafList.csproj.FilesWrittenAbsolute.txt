@@ -1,0 +1,6 @@
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-GrafList/cs-mono/Test-GrafList/Test-GrafList/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-GrafList/cs-mono/Test-GrafList/Test-GrafList/obj/x86/Debug/TestGrafList.gtk-gui.gui.stetic
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-GrafList/cs-mono/Test-GrafList/Test-GrafList/bin/Debug/Test-GrafList.exe.mdb
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-GrafList/cs-mono/Test-GrafList/Test-GrafList/bin/Debug/Test-GrafList.exe
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-GrafList/cs-mono/Test-GrafList/Test-GrafList/obj/x86/Debug/Test-GrafList.exe
+/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-GrafList/cs-mono/Test-GrafList/Test-GrafList/obj/x86/Debug/Test-GrafList.exe.mdb
