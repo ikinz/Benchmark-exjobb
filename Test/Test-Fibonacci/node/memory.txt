@@ -1,2 +1,0 @@
-memusg: rsspeak: 30204 kb
-memusg: rsspeak: 30212 kb

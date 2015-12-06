@@ -29,7 +29,7 @@ function clear_results {
     find -name results -print -delete
     find -name res.txt -print -delete
     find -name memory.txt -print -delete
-    find -name __pycache__ -print -delete
+    #find -name __pycache__ -print -delete
 }
 
 # Get Start Time in nanoseconds
@@ -363,6 +363,65 @@ END
   #calc_mem "LZWComression" "node lzw.js ../DumpFile/dump.txt" "IO" "2"
 }
 
+function benchmark-GrafList {
+  # Mono
+  cd "${testGL}/cs-mono"
+  echo "Location: $(pwd)"
+  for (( i=1; i<=$1; i++))
+  do
+      echo "TestGrafList [1/5] Run [${i}/${1}] C#"
+      time_spent "Starting Test" "mono ./Test-GrafList/Test-GrafList/bin/Debug/Test-GrafList.exe ../DumpFile/dump.txt" "C#"
+  done
+
+  # For Python
+  cd "${testGL}/Python"
+  echo "Location: $(pwd)"
+  for (( i=1; i<=$1; i++))
+  do
+      echo "TestGrafList [2/5] Run [${i}/${1}] Python"
+      time_spent "Starting Test" "python3 TestGrafList.py ../DumpFile/dump.txt"    "Python"
+  done
+
+  # For Java
+  cd "${testGL}/Java"
+  echo "Location: $(pwd)"
+  javac LZW.java &> /dev/null
+  for (( i=1; i<=$1; i++))
+  do
+      echo "TestGrafList [3/5] Run [${i}/${1}] Java"
+      time_spent "Starting Test" "java JavaFX_ListView" "Java"
+  done
+
+  # For Node
+  cd "${testGL}/node"
+  echo "Location: $(pwd)"
+  for (( i=1; i<=$1; i++))
+  do
+      echo "TestGrafList [4/5] Run [${i}/${1}] nodejs"
+      time_spent "Starting Test" "nw ."   "Node"
+  done
+}
+
+function benchmark-GrafList-mem {
+    cd "${testGL}/cs-mono"
+    echo "Location: $(pwd)"
+    calc_mem "GraphList" "mono ./Test-GrafList/Test-GrafList/bin/Debug/Test-GrafList.exe ../DumpFile/dump.txt" "C#" "2"
+
+    cd "${testGL}/Python"
+    echo "Location: $(pwd)"
+    calc_mem "GraphList" "python3 TestGrafList.py ../DumpFile/dump.txt" "Python" "2"
+
+    # For Java
+    cd "${testGL}/Java"
+    echo "Location: $(pwd)"
+    calc_mem "GraphList" "java JavaFX_ListView" "Java" "2"
+
+    # For Node
+    cd "${testGL}/node"
+    echo "Location: $(pwd)"
+    calc_mem "GraphList" "nw ." "Node" "2"
+}
+
 # Check for clear command
 if [[ $1 == "-c" ]]; then
     read -p "Warning gonna clear all benchmark results in ${root}! Are you sure [y/N]? " answer
@@ -375,16 +434,20 @@ fi
 
 ## Preperations ##
 prepareDumpFile
-prepareCompression
+#prepareCompression
+prepareGrafList
 
 ## Runtime Benchmarks ##
-benchmark-IO "100"
-benchmark-fibonacci "100"
-benchmark-LZW "100"
-#prepareGrafList "10"
+#benchmark-IO "100"
+#benchmark-fibonacci "100"
+#benchmark-LZW "100"
+benchmark-GrafList "1"
+
+
 
 ## Memory Benchmarks ##
-benchmark-IO-mem "10"
-benchmark-fibonacci-mem "10"
-benchmark-LZW-mem "10"
+#benchmark-IO-mem "10"
+#benchmark-fibonacci-mem "10"
+#benchmark-LZW-mem "10"
 #prepareGrafList-mem "10"
+benchmark-GrafList-mem "10"

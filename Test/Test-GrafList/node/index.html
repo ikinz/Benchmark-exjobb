@@ -8,7 +8,6 @@
   </body>
   <script>
     var fs = require('fs');
-    require('nw.gui').Window.get().showDevTools()
     var content = fs.readFileSync("../DumpFile/dump.txt", 'utf-8');
     content = content.split('\n');
     var ul = document.getElementById("list");
@@ -17,6 +16,6 @@
         li.appendChild(document.createTextNode(content[i]));
         ul.appendChild(li);
     }
-    //this.close();
+    this.close();
   </script>
 </html>
