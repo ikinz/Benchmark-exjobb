@@ -1,52 +1,57 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import timeit, sys
+import sys, io
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-
-def wrapper(func, *args, **kwargs):
-    def wrapped():
-        return func(*args, **kwargs)
-    return wrapped
 
 class Mywindow(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
-        
+
+    def createList(self, arr):
+        lst = QListView()
+        model = QStandardItemModel(lst)
+        #item = QStandardItem()
+
+        for line in fileLines:
+            item = QStandardItem(line)
+            item.setText(str(line))
+            item.setCheckable(False)
+            model.appendRow(item)
+
+        lst.setModel(model)
+
+        return lst
+
     def initUI(self):
-        app = QApplication(sys.argv)
-        
+        #app = QApplication(sys.argv)
+
+        lst = [x for x in range(20)]
+
         self.setGeometry(300,300,300,200)
-        self.setWindowTitle("Test")
-        
+        self.setWindowTitle("Test-GrafList")
+
+        layout = QVBoxLayout()
+        self.setLayout(layout)
+        layout.addWidget(self.createList(lst))
+
         self.show()
 
-def start(file, outfile):
-    i = 0
-    #ys.exit(app.exec_())
-    
+def readFile(file):
+    global fileLines
+    inp = open(file, 'r')
+    line = inp.read()
+    fileLines = line.splitlines()
 
 def main(argv):
-    '''
-    file = 'dump.txt'
-    output = 'res.txt'
-    for i in range(len(argv)):
-        if argv[i] == '-f':
-            i = i + 1
-            file = argv[i]
-        elif argv[i] == '-o':
-            i = i + 1
-            output = argv[i]
-    
-    wrapped = wrapper(start, file, output)
-    print (timeit.timeit(wrapped, number=1)*1000)
-    '''
+    global app
+    readFile(argv[0])
     app = QApplication(sys.argv)
     w = Mywindow()
-    sys.exit(app.exec_())
-    #sys.exit(0)
+    #sys.exit(app.exec_())
+    sys.exit(0)
 
 if __name__ == '__main__':main(sys.argv[1:])
