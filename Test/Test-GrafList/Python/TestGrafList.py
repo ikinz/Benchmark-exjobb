@@ -11,10 +11,9 @@ class Mywindow(QWidget):
         super().__init__()
         self.initUI()
 
-    def createList(self, arr):
+    def createList(self):
         lst = QListView()
         model = QStandardItemModel(lst)
-        #item = QStandardItem()
 
         for line in fileLines:
             item = QStandardItem(line)
@@ -27,16 +26,12 @@ class Mywindow(QWidget):
         return lst
 
     def initUI(self):
-        #app = QApplication(sys.argv)
-
-        lst = [x for x in range(20)]
-
         self.setGeometry(300,300,300,200)
         self.setWindowTitle("Test-GrafList")
 
         layout = QVBoxLayout()
         self.setLayout(layout)
-        layout.addWidget(self.createList(lst))
+        layout.addWidget(self.createList())
 
         self.show()
 
