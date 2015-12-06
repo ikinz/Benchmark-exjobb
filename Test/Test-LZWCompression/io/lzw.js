@@ -1,4 +1,5 @@
-var fs = require('fs');
+var debug   = require('debug')('fs')
+    fs      = require('fs');
 var content = fs.readFileSync(process.argv[2], 'utf-8');
 
 //LZW Compression/Decompression for Strings
@@ -13,9 +14,11 @@ var LZW = {
             w = "",
             result = [],
             dictSize = 256;
+            debug('vars in compress done');
         for (i = 0; i < 256; i += 1) {
             dictionary[String.fromCharCode(i)] = i;
         }
+        debug('dict array done');
 
         for (i = 0; i < uncompressed.length; i += 1) {
             c = uncompressed.charAt(i);
@@ -32,7 +35,6 @@ var LZW = {
                 w = String(c);
             }
         }
-
         // Output the code for w.
         if (w !== "") {
             result.push(dictionary[w]);
@@ -51,10 +53,11 @@ var LZW = {
             k,
             entry = "",
             dictSize = 256;
+            debug('vars in decompress done');
         for (i = 0; i < 256; i += 1) {
             dictionary[i] = String.fromCharCode(i);
         }
-
+        debug('array done %s', result);
         w = String.fromCharCode(compressed[0]);
         result = w;
         for (i = 1; i < compressed.length; i += 1) {
@@ -77,7 +80,10 @@ var LZW = {
             w = entry;
         }
         return result;
+
     }
 }, // For Test Purposes
-    comp = LZW.compress(content),
+    comp = LZW.compress(content);
+    debug('Compress complete');
     decomp = LZW.decompress(comp);
+    debug('Decompress complete');
