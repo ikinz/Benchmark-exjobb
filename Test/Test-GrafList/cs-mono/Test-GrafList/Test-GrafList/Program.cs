@@ -15,12 +15,13 @@ namespace TestGrafList
 			} 
 			else 
 			{
-				file = "test.txt";
+				file = "/home/ikinz/projects/git/Benchmark-exjobb/Test/Test-GrafList/DumpFile/dump.txt";
 			}
-
+				
 			Application.Init ();
 			MainWindow win = new MainWindow ();
 			win.Show ();
+			win.Hide ();
 			Application.Run ();
 		}
 	}
