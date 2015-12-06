@@ -29,11 +29,8 @@ def main(argv):
             i = i + 1
             output = argv[i]
 
-    #ns = time.time()
     wrapped = wrapper(start, file, output)
-    print (timeit.timeit(wrapped, number=1)*1000)
-    #totaltime = (time.time() - ns) / 1000000
-    #print (totaltime)
+
     sys.exit(0)
 
 if __name__ == '__main__':main(sys.argv[1:])

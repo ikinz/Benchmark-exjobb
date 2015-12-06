@@ -18,15 +18,8 @@ namespace TestIO
 				}
 			}
 
-			//Console.WriteLine(GC.GetTotalMemory (true));
-
-			Stopwatch sw = new Stopwatch ();
-			sw.Start();
 			start (file, output);
-			sw.Stop ();
-			TimeSpan et = sw.Elapsed;
-			Console.WriteLine (et.TotalMilliseconds);
-			//Console.WriteLine(GC.GetTotalMemory (true));
+
 		}
 
 		public static void start(string file, string output) {
@@ -43,27 +36,6 @@ namespace TestIO
 			}
 
 			File.WriteAllText(output, String.Join ("\n", arr));
-
-
-			/*
-			StreamReader sr = new StreamReader (file);
-			StreamWriter sw = new StreamWriter (output);
-
-			try {
-				String line;
-				while ((line = sr.ReadLine()) != null) {
-					line = line.Replace("Tellus", "Terra");
-					line = line.Replace("tellus", "terra");
-
-					sw.WriteLine(line);
-				}
-			} catch (Exception e) {
-
-			} finally {
-				sr.Close ();
-				sw.Close ();
-			}
-			*/
 		}
 	}
 }

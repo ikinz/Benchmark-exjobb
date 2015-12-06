@@ -16,10 +16,10 @@ public class TestIO {
 			}
 		}
 
-		long ns = System.nanoTime();
+		//long ns = System.nanoTime();
 		new TestIO().start(file, output);
-		long time = (System.nanoTime() - ns)/1000000;
-		System.out.println(time + "ms");
+		//long time = (System.nanoTime() - ns)/1000000;
+		//System.out.println(time + "ms");
 	}
 
 	public void start(String file, String output) {
