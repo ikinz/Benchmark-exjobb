@@ -4,14 +4,17 @@
     <title>Benchmark</title>
   </head>
   <body>
-    <li id="list"></li>
+    <ul id="list"></ul>
   </body>
   <script>
-  var fs = require('fs');
+    var fs = require('fs');
     var content = fs.readFileSync("../DumpFile/dump.txt", 'utf-8');
     content = content.split('\n');
+    var ul = document.getElementById("list");
     for (var i = 0; i < content.length; i++) {
-        document.getElementById("list").appendChild(document.createTextNode(content[i]));
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(content[i]));
+        ul.appendChild(li);
     }
     this.close();
   </script>
