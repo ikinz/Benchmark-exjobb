@@ -70,6 +70,7 @@ public class JavaFX_ListView extends Application {
         root.getChildren().add(listView);
         primaryStage.setScene(new Scene(root, 300, 200));
         primaryStage.show();
+	System.exit(0);
     }
 
     public static void main(String[] args) {

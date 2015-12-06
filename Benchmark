@@ -405,21 +405,21 @@ function benchmark-GrafList {
 function benchmark-GrafList-mem {
     cd "${testGL}/cs-mono"
     echo "Location: $(pwd)"
-    calc_mem "GraphList" "mono ./Test-GrafList/Test-GrafList/bin/Debug/Test-GrafList.exe ../DumpFile/dump.txt" "C#" "2"
+    calc_mem "GraphList" "mono ./Test-GrafList/Test-GrafList/bin/Debug/Test-GrafList.exe ../DumpFile/dump.txt" "C#" "10"
 
     cd "${testGL}/Python"
     echo "Location: $(pwd)"
-    calc_mem "GraphList" "python3 TestGrafList.py ../DumpFile/dump.txt" "Python" "2"
+    calc_mem "GraphList" "python3 TestGrafList.py ../DumpFile/dump.txt" "Python" "10"
 
     # For Java
     cd "${testGL}/Java"
     echo "Location: $(pwd)"
-    calc_mem "GraphList" "java JavaFX_ListView" "Java" "2"
+    calc_mem "GraphList" "java JavaFX_ListView" "Java" "10"
 
     # For Node
     cd "${testGL}/node"
     echo "Location: $(pwd)"
-    calc_mem "GraphList" "nw ." "Node" "2"
+    calc_mem "GraphList" "nw ." "Node" "10"
 }
 
 # Check for clear command
@@ -441,7 +441,7 @@ prepareGrafList
 #benchmark-IO "100"
 #benchmark-fibonacci "100"
 #benchmark-LZW "100"
-benchmark-GrafList "1"
+benchmark-GrafList "100"
 
 
 
