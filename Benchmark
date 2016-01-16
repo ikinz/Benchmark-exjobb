@@ -364,6 +364,7 @@ END
 }
 
 function benchmark-GrafList {
+: <<'END'
   # Mono
   cd "${testGL}/cs-mono"
   echo "Location: $(pwd)"
@@ -391,7 +392,7 @@ function benchmark-GrafList {
       echo "TestGrafList [3/5] Run [${i}/${1}] Java"
       time_spent "Starting Test" "java JavaFX_ListView" "Java"
   done
-
+END
   # For Node
   cd "${testGL}/node"
   echo "Location: $(pwd)"
@@ -403,23 +404,25 @@ function benchmark-GrafList {
 }
 
 function benchmark-GrafList-mem {
+: <<'END'
     cd "${testGL}/cs-mono"
     echo "Location: $(pwd)"
-    calc_mem "GraphList" "mono ./Test-GrafList/Test-GrafList/bin/Debug/Test-GrafList.exe ../DumpFile/dump.txt" "C#" "10"
+    calc_mem "GraphList" "mono ./Test-GrafList/Test-GrafList/bin/Debug/Test-GrafList.exe ../DumpFile/dump.txt" "C#" ${1}
 
     cd "${testGL}/Python"
     echo "Location: $(pwd)"
-    calc_mem "GraphList" "python3 TestGrafList.py ../DumpFile/dump.txt" "Python" "10"
+    calc_mem "GraphList" "python3 TestGrafList.py ../DumpFile/dump.txt" "Python" ${1}
 
     # For Java
     cd "${testGL}/Java"
     echo "Location: $(pwd)"
-    calc_mem "GraphList" "java JavaFX_ListView" "Java" "10"
+    calc_mem "GraphList" "java JavaFX_ListView" "Java" ${1}
+END
 
     # For Node
     cd "${testGL}/node"
     echo "Location: $(pwd)"
-    calc_mem "GraphList" "nw ." "Node" "10"
+    calc_mem "GraphList" "nw ." "Node" ${1}
 }
 
 # Check for clear command
@@ -449,5 +452,4 @@ benchmark-GrafList "100"
 #benchmark-IO-mem "10"
 #benchmark-fibonacci-mem "10"
 #benchmark-LZW-mem "10"
-#prepareGrafList-mem "10"
 benchmark-GrafList-mem "10"
