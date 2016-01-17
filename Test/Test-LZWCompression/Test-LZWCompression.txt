@@ -9,3 +9,10 @@ Node   823.651 ms
 fre maj 22 01:51:00 CEST 2015
 Test LZWComression avg results with 100 runs.
 Node   848.947 ms 
+
+sön jan 17 19:32:46 CET 2016
+Test LZWComression avg results with 100 runs.
+Java   456.214 ms 
+Python 522.544 ms 
+C#     581.541 ms 
+Node   690.163 ms 

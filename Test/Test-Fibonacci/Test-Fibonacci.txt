@@ -14,3 +14,10 @@ Python 58820.463 ms
 fre maj 22 01:49:34 CEST 2015
 Test-Fibonacci avg results with 100 runs.
 Node   2145.377 ms 
+
+sön jan 17 19:28:57 CET 2016
+Test-Fibonacci avg results with 100 runs.
+Java   850.004 ms 
+C#     1189.104 ms 
+Node   2138.559 ms 
+Python 68852.100 ms 

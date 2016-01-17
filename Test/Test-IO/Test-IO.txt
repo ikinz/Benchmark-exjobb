@@ -11,3 +11,11 @@ fre maj 22 01:45:59 CEST 2015
 TestIO avg results with 100 runs.
 Total  0.000 ms 
 Node   1162.239 ms 
+
+sön jan 17 17:27:11 CET 2016
+TestIO avg results with 100 runs.
+Total  0.000 ms 
+Python 26.972 ms 
+Node   1207.943 ms 
+C#     1599.273 ms 
+Java   2455.088 ms 
