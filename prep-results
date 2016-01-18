@@ -1,0 +1,12 @@
+#!/bin/bash
+# Create clean files for simple export into spreadsheet.
+
+root=$(pwd)
+
+for dir in $(find -name results -printf "%h\n"); do
+    cd ${dir}
+    pwd
+    cat memory.txt | cut -d ' ' -f 3 > memory.txt_clean
+    cat results | cut -d ' ' -f 5 > results_clean
+    cd ${root}
+done
