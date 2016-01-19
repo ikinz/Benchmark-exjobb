@@ -8,3 +8,13 @@ memusg: rsspeak: 558356 kb
 memusg: rsspeak: 369520 kb
 memusg: rsspeak: 559288 kb
 memusg: rsspeak: 559572 kb
+memusg: rsspeak: 559152 kb
+memusg: rsspeak: 558272 kb
+memusg: rsspeak: 557932 kb
+memusg: rsspeak: 557420 kb
+memusg: rsspeak: 688676 kb
+memusg: rsspeak: 560280 kb
+memusg: rsspeak: 370516 kb
+memusg: rsspeak: 557532 kb
+memusg: rsspeak: 370244 kb
+memusg: rsspeak: 369864 kb

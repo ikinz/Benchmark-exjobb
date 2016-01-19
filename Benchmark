@@ -166,6 +166,7 @@ END
 # Benchmark TestIO Memory
 # Params: Work, Command, Language
 function benchmark-IO-mem {
+
     #For C#
     cd "${testIO}/cs_mono"
     echo "Location: $(pwd)"
@@ -196,7 +197,7 @@ function benchmark-fibonacci {
     # Clean old results
     cd "${testFIB}"
     clear
-
+: <<'END'
     # For C#
     cd "${testFIB}/cs-mono"
     echo "Location: $(pwd)"
@@ -214,7 +215,7 @@ function benchmark-fibonacci {
         echo "Fibonacci [2/5] Run [${i}/${1}] Python"
         time_spent "Starting Test" "python3 Fibonacci.py" "Python"
     done
-
+END
     # For Java
     cd "${testFIB}/java"
     echo "Location: $(pwd)"
@@ -252,6 +253,7 @@ END
 }
 
 function benchmark-fibonacci-mem {
+: <<'END'
     #For C#
     cd "${testFIB}/cs-mono"
     echo "Location: $(pwd)"
@@ -260,7 +262,7 @@ function benchmark-fibonacci-mem {
     cd "${testFIB}/python"
     echo "Location: $(pwd)"
     calc_mem "Fibonacci" "python3 Fibonacci.py" "Python" ${1}
-
+END
     # For Java
     cd "${testFIB}/java"
     echo "Location: $(pwd)"
@@ -280,6 +282,7 @@ END
 }
 
 function benchmark-LZW {
+: <<'END'
     # Clean old results
     cd "${testLZW}"
     clear
@@ -300,7 +303,7 @@ function benchmark-LZW {
         echo "LZWComression [2/5] Run [${i}/${1}] Python"
         time_spent "Starting Test" "python3 LZWCompression.py -f ../DumpFile/dump.txt"    "Python"
     done
-
+END
     # For Java
     cd "${testLZW}/java"
     echo "Location: $(pwd)"
@@ -338,6 +341,7 @@ END
 }
 
 function benchmark-LZW-mem {
+: <<'END'
   #For C#
   cd "${testLZW}/cs-mono"
   echo "Location: $(pwd)"
@@ -346,7 +350,7 @@ function benchmark-LZW-mem {
   cd "${testLZW}/python"
   echo "Location: $(pwd)"
   calc_mem "LZWComression" "python3 LZWCompression.py -f ../DumpFile/dump.txt" "Python" ${1}
-
+END
   # For Java
   cd "${testLZW}/java"
   echo "Location: $(pwd)"
@@ -366,6 +370,7 @@ END
 }
 
 function benchmark-GrafList {
+
   # Mono
   cd "${testGL}/cs-mono"
   echo "Location: $(pwd)"
@@ -405,10 +410,12 @@ function benchmark-GrafList {
 }
 
 function benchmark-GrafList-mem {
+    # For C#
     cd "${testGL}/cs-mono"
     echo "Location: $(pwd)"
     calc_mem "GraphList" "mono ./Test-GrafList/Test-GrafList/bin/Debug/Test-GrafList.exe ../DumpFile/dump.txt" "C#" ${1}
 
+    # For Python
     cd "${testGL}/Python"
     echo "Location: $(pwd)"
     calc_mem "GraphList" "python3 TestGrafList.py ../DumpFile/dump.txt" "Python" ${1}

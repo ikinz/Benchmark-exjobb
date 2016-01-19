@@ -19,3 +19,12 @@ Python 26.972 ms
 Node   1207.943 ms 
 C#     1599.273 ms 
 Java   2455.088 ms 
+
+tis jan 19 20:29:52 CET 2016
+TestIO avg results with 100 runs.
+Total  0.000 ms 
+Python 26.657 ms 
+Node   1207.943 ms 
+Node   1467.918 ms 
+C#     1561.372 ms 
+Java   2461.467 ms 

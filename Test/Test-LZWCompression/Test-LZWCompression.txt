@@ -16,3 +16,11 @@ Java   456.214 ms
 Python 522.544 ms 
 C#     581.541 ms 
 Node   690.163 ms 
+
+tis jan 19 20:37:22 CET 2016
+Test LZWComression avg results with 100 runs.
+Java   451.104 ms 
+Python 522.544 ms 
+C#     581.541 ms 
+Node   690.163 ms 
+Node   1123.932 ms 

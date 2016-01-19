@@ -21,3 +21,11 @@ Java   850.004 ms
 C#     1189.104 ms 
 Node   2138.559 ms 
 Python 68852.100 ms 
+
+tis jan 19 20:34:44 CET 2016
+Test-Fibonacci avg results with 100 runs.
+Java   838.867 ms 
+C#     1189.104 ms 
+Node   2072.247 ms 
+Node   2138.559 ms 
+Python 68852.100 ms 
